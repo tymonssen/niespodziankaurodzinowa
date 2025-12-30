@@ -1,0 +1,349 @@
+:root {
+  --bg:#050505;
+  --gold:#d4af37;
+  --accent-blue:#9fd3ff;
+  --accent-green:#7be79a;
+  --muted:#cfcfcf;
+  --card:#0a0a0a;
+  --radius:14px;
+
+  font-family: Inter, system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial;
+}
+
+/* RESET */
+* { box-sizing: border-box; }
+
+html, body {
+  height: 100%;
+  margin: 0;
+  background: linear-gradient(180deg, var(--bg), #0b0b0b);
+  color: var(--muted);
+  -webkit-font-smoothing: antialiased;
+  overflow-x: hidden;
+}
+
+/* LAYOUT */
+.container {
+  max-width: 1200px;
+  margin: 28px auto;
+  padding: 20px;
+}
+
+/* TOPBAR */
+.topbar {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 18px 24px;
+  background: linear-gradient(90deg, rgba(212,175,55,0.02), transparent);
+  border-bottom: 1px solid rgba(212,175,55,0.06);
+  position: sticky;
+  top: 0;
+  backdrop-filter: blur(4px);
+  z-index: 40;
+}
+
+.brand {
+  display: flex;
+  gap: 14px;
+  align-items: center;
+}
+
+.logo {
+  width: 64px;
+  height: 64px;
+  border-radius: 12px;
+  background: linear-gradient(135deg, var(--gold), #b38612);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: #050505;
+  font-weight: 700;
+  font-family: 'Playfair Display', serif;
+  font-size: 26px;
+}
+
+.brand h1 {
+  margin: 0;
+  color: var(--gold);
+  font-family: 'Playfair Display', serif;
+}
+
+.subtitle {
+  margin: 0;
+  font-size: 13px;
+  color: var(--muted);
+}
+
+.controls {
+  display: flex;
+  gap: 12px;
+  align-items: center;
+}
+
+.controls input {
+  padding: 8px 12px;
+  border-radius: 10px;
+  background: #0a0a0a;
+  border: 1px solid rgba(255,255,255,0.03);
+  color: var(--muted);
+  width: 280px;
+}
+
+.btn {
+  background: transparent;
+  border: 1px solid var(--gold);
+  color: var(--gold);
+  padding: 8px 12px;
+  border-radius: 10px;
+  cursor: pointer;
+}
+
+.btn.small {
+  padding: 6px 10px;
+  font-size: 14px;
+}
+
+/* CARD */
+.card {
+  background: linear-gradient(180deg, rgba(255,255,255,0.01), rgba(255,255,255,0.005));
+  border-radius: 12px;
+  padding: 18px;
+  box-shadow: 0 10px 30px rgba(0,0,0,0.6);
+}
+
+.section-title {
+  font-family: 'Playfair Display', serif;
+  color: var(--gold);
+  margin: 0 0 14px 0;
+  font-size: 20px;
+}
+
+/* VIDEO GRID */
+.video-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(180px, 1fr));
+  gap: 14px;
+  position: relative;
+  z-index: 2;
+}
+
+.video-card {
+  background: linear-gradient(180deg, #0b0b0b, rgba(255,255,255,0.01));
+  border-radius: 12px;
+  overflow: hidden;
+  cursor: pointer;
+  transition: transform .28s ease, box-shadow .28s ease;
+  padding-bottom: 8px;
+  position: relative;
+  z-index: 3;
+}
+
+.video-card:hover {
+  transform: translateY(-6px);
+  box-shadow: 0 22px 48px rgba(0,0,0,0.6);
+}
+
+.thumb {
+  width: 100%;
+  height: 104px;
+  object-fit: cover;
+  display: block;
+}
+
+.meta {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 10px 12px;
+}
+
+.title {
+  font-size: 14px;
+  color: var(--muted);
+  font-weight: 600;
+}
+
+.meta .tag {
+  font-size: 12px;
+  color: var(--accent-blue);
+  background: rgba(159,211,255,0.06);
+  padding: 6px 8px;
+  border-radius: 8px;
+}
+
+/* ==========================
+   MODAL – POPRAWIONY
+========================== */
+.modal {
+  position: fixed;
+  inset: 0;
+  display: none;
+  align-items: center;
+  justify-content: center;
+  z-index: 999; /* nad wszystkim */
+}
+
+.modal.open {
+  display: flex;
+}
+
+.modal-backdrop {
+  position: absolute;
+  inset: 0;
+  background: rgba(0,0,0,0.75);
+}
+
+.modal-window {
+  position: relative;
+  z-index: 2;
+  width: min(1100px, 95%);
+  background: #000;
+  border-radius: 12px;
+  overflow: hidden; /* WAŻNE */
+  max-height: 90vh;
+  display: flex;
+  flex-direction: column;
+}
+
+.modal-body {
+  padding: 14px;
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  overflow-y: auto;
+}
+
+#player {
+  width: 100%;
+  max-height: 60vh;
+  background: black;
+  border-radius: 8px;
+}
+
+.player-info {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 12px;
+}
+
+#playerTitle {
+  margin: 0;
+  color: var(--gold);
+  font-family: 'Playfair Display', serif;
+}
+
+.close-btn {
+  position: absolute;
+  right: 10px;
+  top: 10px;
+  background: transparent;
+  border: 2px solid var(--gold);
+  color: var(--gold);
+  padding: 6px 10px;
+  border-radius: 8px;
+  cursor: pointer;
+}
+
+/* PARTICLES */
+#particles-js {
+  position: fixed;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  z-index: 0;
+  pointer-events: none;
+}
+
+.topbar,
+.container,
+footer,
+.modal-window,
+.video-grid,
+.card {
+  position: relative;
+  z-index: 2;
+}
+
+/* glow */
+.bg-glow {
+  position: fixed;
+  inset: 0;
+  z-index: 0;
+  background: radial-gradient(circle at center,
+      rgba(255,182,193,0.28),
+      rgba(255,105,180,0.12),
+      rgba(0,0,0,0));
+  filter: blur(20px);
+  pointer-events: none;
+}
+
+/* title glow */
+.glow-title {
+  position: relative;
+  display: inline-block;
+  color: var(--gold);
+  font-family: 'Playfair Display', serif;
+  animation: titlePulse 3s ease-in-out infinite;
+}
+
+@keyframes titlePulse {
+  0%   { text-shadow: 0 0 4px rgba(212,175,55,0.4); }
+  50%  { text-shadow: 0 0 18px rgba(212,175,55,0.85), 0 0 32px rgba(212,175,55,0.5); }
+  100% { text-shadow: 0 0 4px rgba(212,175,55,0.4); }
+}
+
+.glow-title::after {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: -120%;
+  width: 80%;
+  height: 100%;
+  background: linear-gradient(
+    120deg,
+    rgba(255,255,255,0) 0%,
+    rgba(255,255,255,0.55) 50%,
+    rgba(255,255,255,0) 100%
+  );
+  transform: skewX(-20deg);
+  animation: titleShine 4s ease-in-out infinite;
+}
+
+@keyframes titleShine {
+  0%   { left: -120%; }
+  40%  { left: 150%; }
+  100% { left: 150%; }
+}
+
+/* SCROLL LOCK */
+.no-scroll {
+  overflow: hidden;
+  height: 100vh;
+}
+
+.footer{
+  text-align: center;
+}
+/* 🔒 Ukryty link – tylko dla wtajemniczonych */
+.secret-heart {
+  text-decoration: none;
+  transition: transform 0.3s ease, filter 0.3s ease;
+  cursor: pointer;
+}
+
+.secret-heart:hover {
+  transform: scale(1.15);
+  filter: drop-shadow(0 0 12px rgba(255,105,180,0.9));
+}
+
+/* opcjonalnie: subtelne mruganie co jakiś czas */
+.secret-heart {
+  animation: heartPulse 4s ease-in-out infinite;
+}
+
+@keyframes heartPulse {
+  0%, 100% { transform: scale(1); }
+  50% { transform: scale(1.08); }
+}

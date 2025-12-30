@@ -1,0 +1,68 @@
+<!doctype html>
+<html lang="pl">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>Urodzinowa niespodzianka</title>
+  <meta name="author" content="tyyyms" />
+  <link rel="stylesheet" href="styles.css" />
+  <script src="https://cdn.jsdelivr.net/npm/tsparticles@2/tsparticles.bundle.min.js"></script>
+  
+
+</head>
+<body>
+  <div class="bg-glow" aria-hidden="true"></div>
+    <div id="particles-js"></div>
+  <header class="topbar">
+    <div class="brand">
+      <a href="secret.html" class="logo secret-heart" >
+  ♥
+</a>
+
+      <div>
+        <h1 class="glow-title">Dla Ciebie</h1>
+        <p class="subtitle">Wybierz pokemona i zobacz co ma do powiedzenia</p>
+      </div>
+    </div>
+
+    <div class="controls">
+      <input id="search" placeholder="Szukaj filmu (tytuł lub numer)..." />
+      <button id="shuffleBtn" class="btn">Losuj</button>
+    </div>
+  </header>
+
+  <main class="container">
+    <section id="videosSection" class="card">
+      <h2 class="section-title">Filmy</h2>
+      <div id="videoGrid" class="video-grid" aria-live="polite"></div>
+    </section>
+  </main>
+
+  <!-- MODAL -->
+  <div id="videoModal" class="modal" aria-hidden="true" role="dialog" aria-label="Odtwarzacz wideo">
+    <div class="modal-backdrop" id="backdrop"></div>
+    <div class="modal-window" role="document">
+      <button id="closeModal" class="close-btn" aria-label="Zamknij">✕</button>
+      <div class="modal-body">
+        <video id="player" controls playsinline preload="metadata"></video>
+        <div class="player-info">
+          <h3 id="playerTitle"></h3>
+          <div class="player-controls">
+            <button id="prevBtn" class="btn small">◀ Poprzedni</button>
+            <button id="nextBtn" class="btn small">Następny ▶</button>
+            <a id="downloadLink" class="btn small" download>Pobierz</a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <footer class="footer">
+    <p>Twoja Niespodzianka • Stworzono z miłością</p>
+  </footer>
+
+
+  <script src="script.js"></script>
+  
+</body>
+</html>
